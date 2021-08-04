@@ -1,0 +1,123 @@
+body
+{
+    font-family: 'Montserrat', sans-serif;
+}
+.navbar
+{
+    background-color: black;
+}
+.navbar .brand-navbar img:hover
+{
+    opacity: 0.7;
+}
+.navbar ul
+{
+padding: 0px 30px 0px 0px;
+}
+.navbar ul li a{
+    color: white;
+    margin: 10px 0px 0px 10px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.navbar ul li a .fas{
+    padding-right:5px; 
+    padding-left:5px; 
+}
+.navbar ul li a:hover{
+    color: #15b000;
+}
+.navbar ul li.active > a {
+    color: #15b000;
+    font-weight: bold;
+    font-size: 12px;
+    border-left: 3px solid #15b000;
+    border-radius: 40px;
+}
+.iconStyle
+{
+    color: #15b000;
+}
+
+header .carousel-inner .item
+{
+    height: 100vh;
+}
+.carousel-caption
+{
+    padding-bottom: 130px;
+}
+.carousel-caption h1
+{
+    font-size: 70px;
+    font-weight: 1000;
+    text-shadow: 3px 3px #15b000;;
+    text-transform: uppercase;
+    animation-delay: 1s;
+    animation-duration: 2s;
+}
+.carousel-caption p
+{
+    animation-delay: 1s;
+}
+
+.carousel-caption .btn
+{
+    animation-delay: 1s;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    margin-top: 20px;
+    animation-duration: 2s;
+}
+
+.carousel-control-prev {
+    width: 48px;
+    height: 48px;
+    top: auto;
+    bottom: 0;
+    font-size: 2rem;
+}
+.carousel-control-next {
+    width: 48px;
+    height: 48px;
+    top: auto;
+    bottom: 0;
+    font-size: 2rem;
+}
+@media only screen and (max-width:480px)
+{
+    .carousel-caption
+    {
+        padding-bottom: 20px;
+    }
+    .carousel-caption h1
+    {
+        font-size: 20px;
+        font-weight: 1000;
+        text-shadow: 3px 3px #15b000;;
+        text-transform: uppercase;
+        animation-delay: 1s;
+        animation-duration: 2s;
+    }
+    .carousel-caption p
+    {
+        animation-delay: 1s;
+        font-size: 10px;
+    }
+    
+    .carousel-caption .btn
+    {
+        animation-delay: 1s;
+        border-radius: 20px;
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+        margin-top: 5px;
+        animation-duration: 2s;
+        padding: 5px;
+        font-size: 10px;
+    }
+}
+

@@ -1,0 +1,28 @@
+video{
+    border-radius: 3%;
+}
+#localStream{
+    position: absolute;
+    z-index: 9;
+    margin-top: 136px;
+    margin-left:-6px;
+}
+#controls{
+    position: absolute;
+    z-index: 999;
+}
+#icon_video , #icon_call_off{
+    margin-top:-120px;
+    width:50px;
+    height:50px;
+}
+#icon_video{
+    margin-left:610px;
+}
+#icon_call_off{
+    margin-left:15px;
+}
+#remoteStream {
+    margin-left:6%;
+    margin-top:10%;
+}

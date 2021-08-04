@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/chat.css">
+    <link rel="stylesheet" type="text/css" href="/css/chat_video.css">
+    <script src="/js/chat.js"></script>
+    <script src="/js/peer.js"></script>
+    <script src="/js/peer.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navStyle fixed-top">
+        <a class="brand-navbar" href="/"><img  class="rounded-circle user_img" src="../uploads/<%= avatar %>" alt="Responsive image" height="60px"> <%= user %></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#mainMenu">
+            <span><i class="fas fa-align-right iconStyle"></i></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainMenu">
+            <ul class="navbar-nav ml-auto navList">
+                <li class="nav-item">
+                    <a href="/<%= ID %>/about" class="nav-link"><i class="far fa-address-card"></i>Thông tin tài khoản</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/" class="nav-link" id="logout"><i class="far fa-use"></i>Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid h-100" id="frameMsg">
+        <div class="row justify-content-center h-100">
+            <div class="col-md-4 col-xl-3 chat">
+                <div class="card mb-sm-3 mb-md-0 contacts_card">
+                    <div class="card-header chat_card">
+                        <div class="input-group">
+                            <input type="text" placeholder="Search..." name="" class="form-control search"
+                                id="mySearch">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Danh sach nguoi dung online-->
+                    <div class="card-body contacts_body" id="listFriend_online">
+
+                    </div>
+                    <div class="card-footer"></div>
+                    <!--/Danh sach nguoi dung online-->
+                    <!--Danh sach nguoi dung online-->
+                    <div class="card-body contacts_body" id="listFriend">
+
+                    </div>
+                    <div class="card-footer"></div>
+                    <!--/Danh sach nguoi dung online-->
+                </div>
+            </div>
+            <div class="col-md-8 col-xl-6 chat" id="frameChat">
+                <div class="card">
+                    <div class="card-header msg_head chat_card">
+                        <div class="d-flex bd-highlight">
+                            <div class="img_cont">
+                                <img src="" class="rounded-circle user_img" id="user_img">
+                                <span class="online_icon"></span>
+                            </div>
+                            <div class="user_info">
+                                <span id="nameUserInBoxChat"></span>
+                                <p>Đang hoạt động</p>
+                            </div>
+                            <div class="video_cam">
+                                <span><i class="fas fa-video" id="callVideo"></i></span>
+                                <span><i class="fas fa-phone"></i></span>
+                            </div>
+                        </div>
+                        <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+                        <div class="action_menu">
+                            <ul>
+                                <li><i class="fas fa-user-circle"></i> View profile</li>
+                                <li><i class="fas fa-users"></i> Add to close friends</li>
+                                <li><i class="fas fa-plus"></i> Add to group</li>
+                                <li><i class="fas fa-ban"></i> Block</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Khung chat-->
+                    <div class="card-body msg_card_body" id="placeChat">
+
+                    </div>
+                    <!--Khung chat-->
+                    <div class="card-footer chat_card_footer">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+                            </div>
+                            <input class="form-control type_msg" placeholder="Type your message..." id="txtMessage" value="">
+                            <div class="input-group-append" id="send">
+                                <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="frameVideoCall">
+        <div id="frameVideo">
+            <video id="remoteStream" width="800" height="600" autoplay="autoplay"></video>
+            <div class="form-inline" id="controls">
+                <img src="/images/icon_video.png" id="icon_video">
+                <img src="/images/icon_call_off.png" id="icon_call_off">
+            </div>
+            <video id="localStream" width="280" height="200" autoplay="autoplay"></video>
+        </div>
+    </div>
+    <div id="temp">
+        <input type="text" id="peerID" value="" />
+        <input type="text" id="name" value="<%= user %>" />
+        <input type="text" id="image" value="<%= avatar %>" />
+    </div>
+</body>
+</html>
